@@ -1,0 +1,16 @@
+# Core computer-vision library: reads camera frames, draws boxes, shows windows
+opencv-python
+
+# Ultralytics YOLO: pretrained person/object detection model
+ultralytics
+
+# Linear-assignment library required by YOLO's tracker (ByteTrack)
+lap
+
+# Serves the annotated camera feeds to the frontend as MJPEG
+flask
+flask-cors
+
+# Test runner (for tests/)
+pytest
+

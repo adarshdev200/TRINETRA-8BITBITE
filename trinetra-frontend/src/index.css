@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #080A0F;
+    color: #E5E7EB;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0E1118;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #191E28;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2A3040;
+  }
+
+  input,
+  textarea,
+  select {
+    background-color: #0E1118;
+    color: #E5E7EB;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: #E6A23C;
+    box-shadow: 0 0 0 1px #E6A23C;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-dark-panel border border-[rgba(255,255,255,0.08)] rounded-lg p-4 transition-all;
+  }
+
+  .card-elevated {
+    @apply bg-dark-elevated border border-[rgba(255,255,255,0.08)] rounded-lg p-4 transition-all;
+  }
+
+  .card-hover {
+    @apply hover:border-[rgba(255,255,255,0.15)] hover:shadow-lg hover:shadow-black/20 transition-all;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-dark font-medium px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-dark-elevated text-gray-200 font-medium px-4 py-2 rounded-lg hover:bg-[#1E2632] transition-colors border border-[rgba(255,255,255,0.08)];
+  }
+
+  .btn-danger {
+    @apply bg-critical text-white font-medium px-4 py-2 rounded-lg hover:bg-red-700 transition-colors;
+  }
+
+  .btn-success {
+    @apply bg-success text-white font-medium px-4 py-2 rounded-lg hover:bg-green-600 transition-colors;
+  }
+
+  .status-dot {
+    @apply w-2 h-2 rounded-full inline-block;
+  }
+
+  .status-dot-success {
+    @apply status-dot bg-success;
+  }
+
+  .status-dot-warning {
+    @apply status-dot bg-warning;
+  }
+
+  .status-dot-critical {
+    @apply status-dot bg-critical animate-pulse;
+  }
+
+  .status-dot-info {
+    @apply status-dot bg-info;
+  }
+}
+
+/* Leaflet */
+
+.leaflet-container {
+  background-color: #0E1118 !important;
+}
+
+.leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.8);
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: #141821 !important;
+  color: #E5E7EB !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 8px !important;
+}
+
+.leaflet-popup-tip {
+  background-color: #141821 !important;
+}
