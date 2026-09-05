@@ -1,0 +1,36 @@
+# Render Blueprint — deploys the TRINETRA Node backend as a free web service.
+# In the Render dashboard: New + -> Blueprint -> connect this repo. Render reads
+# this file. You still set MONGO_URI (Atlas) manually (marked sync:false).
+#
+# The CV engine, ESP32 band, and barricade agent are NOT deployed here — they run
+# locally and POST to this service's public URL (https://<name>.onrender.com).
+services:
+  - type: web
+    name: trinetra-backend
+    runtime: node
+    plan: free
+    rootDir: mandir-crowd-monitor/backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      # Paste your MongoDB Atlas SRV connection string in the Render dashboard.
+      - key: MONGO_URI
+        sync: false
+      # Auth secret for admin JWTs — Render generates a strong random value.
+      - key: JWT_SECRET
+        generateValue: true
+      # Room / gate configuration (see backend/.env.example).
+      - key: CAPACITY
+        value: "20"
+      - key: GATE_HIGH
+        value: "20"
+      - key: GATE_LOW
+        value: "8"
+      - key: ENTER_WEIGHT
+        value: "10"
+      - key: EXIT_WEIGHT
+        value: "6"
+      - key: GATE_BLOCKS_ENTRY
+        value: "true"
+    # NOTE: do not set PORT — Render injects it and server.js already reads it.

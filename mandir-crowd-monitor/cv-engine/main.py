@@ -10,12 +10,16 @@
 # The darshan enter/exit events drive occupancy + gate on the backend; the
 # outside count is posted directly.
 
+import os
+
 from src.zone_pipeline import ZonePipeline
 from src.web_stream import run_server
 from src.signal_client import SignalClient
 
-BACKEND_URL = "http://localhost:4000"
-FEED_PORT = 8090
+# Point at the deployed backend by exporting BACKEND_URL, e.g.
+#   BACKEND_URL=https://trinetra-backend.onrender.com python main.py
+BACKEND_URL = os.environ.get("BACKEND_URL", "http://localhost:4000")
+FEED_PORT = int(os.environ.get("FEED_PORT", "8090"))
 
 # For a live demo, set each "source" to the phone stream URL. For testing
 # without phones, point them at a video file (videos/vtest.avi).
